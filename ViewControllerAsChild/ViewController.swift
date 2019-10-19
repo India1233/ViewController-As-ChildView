@@ -8,27 +8,43 @@
 
 import UIKit
 
+
+
 class ViewController: UIViewController {
     
-    let width:CGFloat = 150.0
-    
+    //create object for SecondViewController
     
     let secondVC = SecondViewController()
 
-    var pushButton: UIButton {
+    
+    //create width for button
+    
+    let width:CGFloat = 150.0
+
+    // create button for action
+    
+    var showButton: UIButton {
         let button = UIButton()
         button.frame = CGRect(x: self.view.frame.size.width/2 - width/2, y: self.view.center.y, width: width, height: 50)
         button.backgroundColor = .black
-        button.setTitle("push", for: .normal)
+        button.setTitle("showView", for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial", size: 26)
-        button.addTarget(self, action: #selector(pushViewController), for: .touchUpInside)
+        button.addTarget(self, action: #selector(showViewController), for: .touchUpInside)
         return button
     }
     
-    @objc func pushViewController() {
+    // button action
+    
+    @objc func showViewController() {
+        
+// methods for showing SecondViewController as child to ViewController
+        
 //        self.view.addSubview(secondVC.view)
 //        self.addChild(secondVC)
 //        secondVC.didMove(toParent: self)
+        
+        // by adding same above methods through extension
+        
         add(secondVC)
     }
     
@@ -37,9 +53,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        self.view.backgroundColor = .red
-        self.view.addSubview(pushButton)
         
+        self.view.backgroundColor = .red
+        self.view.addSubview(showButton)
     }
     
     
@@ -48,13 +64,17 @@ class ViewController: UIViewController {
 
 class SecondViewController: UIViewController {
     
+    //create width for button
+
     let width:CGFloat = 150.0
 
-    var popButton: UIButton {
+    // create button for action
+
+    var hideButton: UIButton {
         let button = UIButton()
         button.frame = CGRect(x: self.view.frame.width/2 - width/2, y: self.view.center.y, width: width, height: 50)
         button.backgroundColor = .black
-        button.setTitle("dismiss", for: .normal)
+        button.setTitle("hideView", for: .normal)
         button.titleLabel?.font = UIFont(name: "Arial", size: 26)
         button.addTarget(self, action:#selector(popViewController), for: .touchUpInside)
         return button
@@ -63,7 +83,7 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         self.view.backgroundColor = .yellow
-        self.view.addSubview(popButton)
+        self.view.addSubview(hideButton)
     }
     
 
@@ -76,6 +96,8 @@ class SecondViewController: UIViewController {
 
 }
 
+
+// extension for creating viewcontroller as childview to another viewcontroller
 
 
 extension UIViewController {
